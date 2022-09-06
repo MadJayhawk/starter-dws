@@ -10,7 +10,7 @@
 # To get you started we've included code to prevent your Battlesnake from moving backwards.
 # For more info see docs.battlesnake.com
 
-import random
+import random2 as r
 import typing
 import strategy as s
 
@@ -45,10 +45,10 @@ def end(game_state: typing.Dict):
 # See https://docs.battlesnake.com/api/example-move for available data
 def move(game_state: typing.Dict) -> typing.Dict:
 
-    is_move_safe = {"up": True, "down": True, "left": True, "right": True}
-    print(is_move_safe)
     moves = s.possible_moves(game_state)
-    print("moves: ", moves)
+    x = r.choice(moves)
+    next_move = list(x.values())[0]
+    print("Next Move: ", next_move)
     # We've included code to prevent your Battlesnake from moving backwards
     # my_head = game_state["you"]["body"][0]  # Coordinates of your head
     # my_neck = game_state["you"]["body"][1]  # Coordinates of your "neck"
@@ -80,12 +80,12 @@ def move(game_state: typing.Dict) -> typing.Dict:
     safe_moves = ["right", "left", "up", "down"]
 
     # Choose a random move from the safe ones
-    next_move = random.choice(safe_moves)
+    # next_move = random.choice(safe_moves)
 
     # TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     # food = game_state['board']['food']
 
-    print(f"MOVE: {game_state['turn']}: {next_move}")
+    print(f"\nMOVE: {game_state['turn']}: {next_move}\n")
     return {"move": next_move}
 
 
@@ -94,4 +94,3 @@ if __name__ == "__main__":
     from server import run_server
 
     run_server({"info": info, "start": start, "move": move, "end": end})
-
