@@ -45,10 +45,11 @@ def end(game_state: typing.Dict):
 # See https://docs.battlesnake.com/api/example-move for available data
 def move(game_state: typing.Dict) -> typing.Dict:
 
-    moves,direction = s.possible_moves(game_state)
-    s.prt('moves',moves)
-    s.prt('direction',direction)
-    next_move = r.choice(direction)
+    moves, direction = s.possible_moves(game_state)
+    s.prt("moves", moves)  # ss
+    s.prt("direction", direction)
+    print(list(direction.values()))
+    next_move = r.choice(list(direction.values()))
     print("Next Move: ", next_move)
     # We've included code to prevent your Battlesnake from moving backwards
     # my_head = game_state["you"]["body"][0]  # Coordinates of your head
